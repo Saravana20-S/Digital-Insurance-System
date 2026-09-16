@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: auth-service
+
+  profiles:
+    active: dev
+
+server:
+  port: 8081
+
+# Eureka configuration
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: true
+
+security:
+  jwt:
+    secret: my-super-secret-key-for-digital-life-insurance-project-2026
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.digitalinsurance: DEBUG
