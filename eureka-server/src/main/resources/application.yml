@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+
+eureka:
+  client:
+
+    # Eureka server should NOT register itself
+    register-with-eureka: false
+
+    # Eureka server does not need to fetch itself
+    fetch-registry: false
+
+  server:
+    # Development environment setting
+    enable-self-preservation: true
+
+logging:
+  level:
+    root: INFO
+    com.digitalinsurance: DEBUG
