@@ -1,0 +1,235 @@
+#spring:
+#  application:
+#    name: api-gateway
+#
+#  profiles:
+#    active: dev
+#
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#
+#            # ==============================
+#            # AUTH SERVICE
+#            # ==============================
+#            - id: auth-service
+#              uri: lb://AUTH-SERVICE
+#              predicates:
+#                - Path=/api/auth/**
+#
+#            - id: policy-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/policies/**
+#
+#            # ==============================
+#            # POLICY SERVICE
+#            # ==============================
+#            - id: policy-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/policy/**
+#
+#            # ==============================
+#            # PLAN APIs
+#            # ==============================
+#            - id: plan-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/plans/**
+#
+#            # ==============================
+#            # CUSTOMER APIs
+#            # ==============================
+#            - id: customer-service
+#              uri: lb://AUTH-SERVICE
+#              predicates:
+#                - Path=/api/customers/**
+#
+#            # ==============================
+#            # PAYMENT APIs
+#            # ==============================
+#            - id: payment-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/payments/**
+#
+#            - id: renewal-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/renewals/**
+#
+#            # ==============================
+#            # PREMIUM APIs
+#            # ==============================
+#            - id: premium-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/premiums/**
+#
+#            # ==============================
+#            # NOTIFICATION SERVICE
+#            # ==============================
+#            - id: notification-service
+#              uri: lb://NOTIFICATION-SERVICE
+#              predicates:
+#                - Path=/api/notification/**
+#
+#
+#            # ==============================
+#            # Batch SERVICE
+#            # ==============================
+#            - id: batch-service
+#              uri: lb://BATCH-SERVICE
+#              predicates:
+#                - Path=/api/batch/**
+#
+#            # ==============================
+#            # BATCH SERVICE
+#            # ==============================
+#            - id: batch-service
+#              uri: lb://BATCH-SERVICE
+#              predicates:
+#                - Path=/api/admin/customers/import/**
+#
+#
+## ==============================
+## SERVER
+## ==============================
+#
+#server:
+#  port: 8080
+#
+#
+## ==============================
+## EUREKA CLIENT
+## ==============================
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka/
+#
+#    register-with-eureka: true
+#    fetch-registry: true
+#
+#  instance:
+#    prefer-ip-address: true
+#
+#
+## ==============================
+## LOGGING
+## ==============================
+#
+#logging:
+#  level:
+#    root: INFO
+#    org.springframework.cloud.gateway: INFO
+#    com.digitalinsurance: DEBUG
+
+
+
+
+
+spring:
+  application:
+    name: api-gateway
+
+  profiles:
+    active: dev
+
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+
+            # AUTH SERVICE
+            - id: auth-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/auth/**
+
+            # POLICY SERVICE
+            - id: policy-service
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/policies/**
+
+            - id: policy-api
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/policy/**
+
+#            # PLAN
+#            - id: plan-service
+#              uri: lb://POLICY-SERVICE
+#              predicates:
+#                - Path=/api/plans/**
+
+            # PLAN
+            - id: plan-service
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/admin/plans/**
+
+            # CUSTOMER
+            - id: customer-service
+              uri: lb://AUTH-SERVICE
+              predicates:
+                - Path=/api/customers/**
+
+            # PAYMENT
+            - id: payment-service
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/payments/**
+
+            # RENEWAL
+            - id: renewal-service
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/renewals/**
+
+            # PREMIUM
+            - id: premium-service
+              uri: lb://POLICY-SERVICE
+              predicates:
+                - Path=/api/premiums/**
+
+            # NOTIFICATION
+            - id: notification-service
+              uri: lb://NOTIFICATION-SERVICE
+              predicates:
+                - Path=/api/notification/**
+
+            # BATCH
+            - id: batch-service
+              uri: lb://BATCH-SERVICE
+              predicates:
+                - Path=/api/batch/**
+
+            - id: batch-import
+              uri: lb://BATCH-SERVICE
+              predicates:
+                - Path=/api/admin/customers/import/**
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.gateway: INFO
